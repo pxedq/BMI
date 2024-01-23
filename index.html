@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            color: white;
+            background-color: rgb(44, 44, 63);
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        button {
+            cursor: pointer;
+            width: 120px;
+            height: 50px;
+            background-color: rgb(37, 37, 56);
+            color: white;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        div {
+            background-color: rgb(37, 37, 56);
+            width: 600px;
+            height: 450px;
+            align-items: center;
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 5px;
+            color: white;
+            box-shadow: 0px 2px 5px 2px rgb(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+
+        p {
+            height: 15px;
+            text-align: center;
+            color: white;
+            font-size: large;
+        }
+
+        input {
+            border: 2px solid blue;
+            height: 50px;
+            width: 350px;
+            background-color: rgb(37, 37, 56);
+            color: white;
+            border-radius: 5px;
+            font-size: large;
+        }
+
+        #calculator {
+            border: 2px solid blue;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #Clear {
+            border: 2px solid red;
+            border-radius: 5px;  
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>BMI Calculator</h1>
+
+        <input type="number" id="kg" placeholder="Weight (kg)"><br><br>
+        <input type="number" id="cm" placeholder="Height (cm)"><br><br>
+
+        <button onclick="calc()" id="calculator">Calculate</button>
+        <button onclick="clear1()" id="Clear">Clear</button>
+
+        <p id="BMI"></p>
+        <p id="category"></p>
+    </div>
+
+    <script>
+        function calc() {
+            let kg =+ document.getElementById('kg').value;
+            let cm =+ document.getElementById('cm').value / 100;
+            let BMI =+ (kg / (cm*cm) );
+            console.log(kg, cm, BMI);
+
+            if (!kg) return
+            console.log(typeof kg);
+
+            if(!cm) return
+            console.log(typeof cm);
+
+            document.getElementById('BMI').innerHTML = "BMI: " + BMI.toFixed(2);
+
+            if (BMI < 18.5) {
+                document.getElementById('category').innerHTML = "Category: Underweight😒"
+            } 
+            else if(BMI >= 18.5 && BMI <= 24.9) {
+                document.getElementById('category').innerHTML = "Category: Normal😄"
+            } 
+            else if(BMI >= 25 && BMI <= 29.9) {
+                document.getElementById('category').innerHTML = "Category: Overweight😒"
+            }
+            else if(BMI >= 30 && BMI <= 34.9) {
+                document.getElementById('category').innerHTML = "Category: Obesity🙁"
+            }
+            else if(BMI >= 35) {
+                document.getElementById('category').innerHTML = "Category: Extremly obesity😨"
+            }
+        }
+
+        function clear1() {
+            location.reload()
+        }
+        
+    </script>
+</body>
+</html>
